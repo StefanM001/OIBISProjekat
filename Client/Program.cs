@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -11,17 +12,19 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            string address = "net.tcp://localhost:4000/IMalwareScanning";
+            string address = "net.tcp://localhost:4001/IChangeConfig";
             NetTcpBinding binding = new NetTcpBinding();
 
-            ChannelFactory<IChangeConfig> channel = new ChannelFactory<IMalwareScanning>(binding, address);
+            ChannelFactory<IChangeConfig> channel = new ChannelFactory<IChangeConfig>(binding, address);
 
-            IMalwareScanning proxy = channel.CreateChannel();
+            IChangeConfig proxy = channel.CreateChannel();
 
-            Console.WriteLine(proxy.SendAlarmToIDS());
+            Console.WriteLine("Connection with MS servis is succesfull.");
+            Console.WriteLine("//Login screen and implementation for changing autorization levels comes later.");
+
+            Console.WriteLine(proxy.SendMessage());
 
             Console.ReadKey();
         }
-    }
     }
 }
