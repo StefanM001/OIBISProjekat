@@ -24,7 +24,7 @@ namespace IDS
             string srvCertCN = "wcfservice";
 
             X509Certificate2 srvCert = CertManager.GetCertificateFromStorage(StoreName.TrustedPeople, StoreLocation.LocalMachine, srvCertCN);
-            EndpointAddress address = new EndpointAddress(new Uri("net.tcp://localhost:4000/IMalwareScanning"),
+            EndpointAddress address = new EndpointAddress(new Uri("net.tcp://localhost:4001/IMalwareScanning"),
                                       new X509CertificateEndpointIdentity(srvCert));
 
             ChannelFactory<IMalwareScanning> channel = new ChannelFactory<IMalwareScanning>(binding, address);
@@ -35,7 +35,7 @@ namespace IDS
             channel.Credentials.ServiceCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
 
             /// Set appropriate client's certificate on the channel. Use CertManager class to obtain the certificate based on the "cltCertCN"
-            channel.Credentials.ClientCertificate.Certificate = CertManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, cltCertCN);
+            channel.Credentials.ClientCertificate.Certificate = CertManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, "wcfclient");
 
             
 
