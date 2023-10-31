@@ -33,12 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Manager">
-      <HintPath>..\..\..\..\..\..\FAKS\Bezbednost\Vezba_2_resenje\Zadatak 2.1\Manager\bin\Debug\Manager.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -58,6 +56,10 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{1F49C2C7-AF15-4519-A4CF-BDC0AC113460}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Manager\Manager.csproj">
+      <Project>{20e29bd1-5378-4ada-8bbc-91f3acf27596}</Project>
+      <Name>Manager</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
