@@ -36,7 +36,9 @@ namespace IDS
             /// Set appropriate client's certificate on the channel. Use CertManager class to obtain the certificate based on the "cltCertCN"
             channel.Credentials.ClientCertificate.Certificate = CertManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, "wcfclient");
 
-            
+
+
+            Console.WriteLine(WindowsIdentity.GetCurrent().Name);
 
             /// Use CertManager class to obtain the certificate based on the "srvCertCN" representing the expected service identity.
 
