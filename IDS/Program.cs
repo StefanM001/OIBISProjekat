@@ -32,22 +32,22 @@ namespace IDS
 
             channel.Credentials.ServiceCertificate.Authentication.CertificateValidationMode = System.ServiceModel.Security.X509CertificateValidationMode.ChainTrust;
             channel.Credentials.ServiceCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
-
-            /// Set appropriate client's certificate on the channel. Use CertManager class to obtain the certificate based on the "cltCertCN"
-            channel.Credentials.ClientCertificate.Certificate = CertManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, "wcfclient");
-
-
+            channel.Credentials.ClientCertificate.Certificate = CertManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, cltCertCN.ToLower());
 
             Console.WriteLine(WindowsIdentity.GetCurrent().Name);
 
-            /// Use CertManager class to obtain the certificate based on the "srvCertCN" representing the expected service identity.
+            try
+            {
+                IMalwareScanning proxy = channel.CreateChannel();
 
+                Console.WriteLine(proxy.SendAlarmToIDS());
 
-            IMalwareScanning proxy = channel.CreateChannel();
-
-            Console.WriteLine(proxy.SendAlarmToIDS());
-
-            proxy.SendAlarmToMS();
+                proxy.SendAlarmToMS();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error detected: " + ex.Message);
+            }
 
             Console.ReadKey();
         }
