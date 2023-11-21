@@ -1,0 +1,6 @@
+C:\Users\Ludi\Downloads\OIBISProjekat-GranaS\OIBSProjekat\Common\bin\Debug\Common.dll
+C:\Users\Ludi\Downloads\OIBISProjekat-GranaS\OIBSProjekat\Common\bin\Debug\Common.pdb
+C:\Users\Ludi\Downloads\OIBISProjekat-GranaS\OIBSProjekat\Common\obj\Debug\Common.csproj.AssemblyReference.cache
+C:\Users\Ludi\Downloads\OIBISProjekat-GranaS\OIBSProjekat\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+C:\Users\Ludi\Downloads\OIBISProjekat-GranaS\OIBSProjekat\Common\obj\Debug\Common.dll
+C:\Users\Ludi\Downloads\OIBISProjekat-GranaS\OIBSProjekat\Common\obj\Debug\Common.pdb
