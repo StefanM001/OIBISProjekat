@@ -27,8 +27,7 @@ namespace Manager
         }
 
         public bool Evaluate(EvaluationContext evaluationContext, ref object state)
-        {
-
+        { 
             if (!evaluationContext.Properties.TryGetValue("Identities", out object list))
             {
 
@@ -43,7 +42,6 @@ namespace Manager
 
             evaluationContext.Properties["Principal"] = new CustomPrincipal((WindowsIdentity)identities[0]);
             return true;
-
         }
     }
 }

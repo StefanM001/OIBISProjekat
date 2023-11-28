@@ -3,9 +3,11 @@ using Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using Formatter = Manager.Formatter;
@@ -34,8 +36,7 @@ namespace IDS
             channel.Credentials.ServiceCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
 
             /// Set appropriate client's certificate on the channel. Use CertManager class to obtain the certificate based on the "cltCertCN"
-            channel.Credentials.ClientCertificate.Certificate = CertManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, "wcfclient");
-
+            channel.Credentials.ClientCertificate.Certificate = CertManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, cltCertCN.ToLower());
 
 
             Console.WriteLine(WindowsIdentity.GetCurrent().Name);
@@ -45,9 +46,14 @@ namespace IDS
 
             IMalwareScanning proxy = channel.CreateChannel();
 
-            Console.WriteLine(proxy.SendAlarmToIDS());
+            X509Certificate2 certificateSign = CertManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, cltCertCN);
+            byte[] signature = DigitalSignature.Create("Poruka", certificateSign);
+            proxy.SendAlarmToIDS("Poruka", signature);
 
-            proxy.SendAlarmToMS();
+            string wrongCertCN = "wrong_sign";
+            X509Certificate2 certificateSignWrong = CertManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, wrongCertCN);
+            byte[] signatureWrong = DigitalSignature.Create("Poruka", certificateSignWrong);
+            proxy.SendAlarmToIDS("Poruka", signatureWrong);
 
             Console.ReadKey();
         }
