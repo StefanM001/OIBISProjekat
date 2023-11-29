@@ -10,3 +10,9 @@ C:\Users\Administrator\Downloads\OIBISProjekat-ludjo\Common\obj\Debug\Common.csp
 C:\Users\Administrator\Downloads\OIBISProjekat-ludjo\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Downloads\OIBISProjekat-ludjo\Common\obj\Debug\Common.dll
 C:\Users\Administrator\Downloads\OIBISProjekat-ludjo\Common\obj\Debug\Common.pdb
+C:\Users\Administrator\Downloads\OIBISProjekat\Common\bin\Debug\Common.dll
+C:\Users\Administrator\Downloads\OIBISProjekat\Common\bin\Debug\Common.pdb
+C:\Users\Administrator\Downloads\OIBISProjekat\Common\obj\Debug\Common.csproj.AssemblyReference.cache
+C:\Users\Administrator\Downloads\OIBISProjekat\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Downloads\OIBISProjekat\Common\obj\Debug\Common.dll
+C:\Users\Administrator\Downloads\OIBISProjekat\Common\obj\Debug\Common.pdb

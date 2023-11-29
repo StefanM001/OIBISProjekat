@@ -29,6 +29,12 @@ namespace Manager
                 parts = winLogonName.Split('\\');
                 return parts[1];
             }
+            else if (winLogonName.Contains(';'))
+            {
+                parts = winLogonName.Split(';');
+                return parts[0].Split('=')[1];
+
+            }
             else
             {
                 return winLogonName;
