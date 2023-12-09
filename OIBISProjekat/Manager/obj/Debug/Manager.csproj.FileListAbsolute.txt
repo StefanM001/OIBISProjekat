@@ -22,3 +22,4 @@ C:\Users\Administrator\Downloads\OIBISProjekat\Manager\obj\Debug\Manager.csproj.
 C:\Users\Administrator\Downloads\OIBISProjekat\Manager\obj\Debug\Manager.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Downloads\OIBISProjekat\Manager\obj\Debug\Manager.dll
 C:\Users\Administrator\Downloads\OIBISProjekat\Manager\obj\Debug\Manager.pdb
+C:\Users\Administrator\Downloads\OIBISProjekat\Manager\obj\Debug\Manager.AuditEventFile.resources

@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.IdentityModel.Claims;
 using System.IdentityModel.Policy;
-using System.Linq;
 using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Manager
 {
@@ -27,7 +24,7 @@ namespace Manager
         }
 
         public bool Evaluate(EvaluationContext evaluationContext, ref object state)
-        { 
+        {
             if (!evaluationContext.Properties.TryGetValue("Identities", out object list))
             {
 
