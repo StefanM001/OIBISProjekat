@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace Manager
 {
@@ -28,6 +24,12 @@ namespace Manager
                 /// SPN format
                 parts = winLogonName.Split('\\');
                 return parts[1];
+            }
+            else if (winLogonName.Contains(';'))
+            {
+                parts = winLogonName.Split(';');
+                return parts[0].Split('=')[1];
+
             }
             else
             {

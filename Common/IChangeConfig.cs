@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common
 {
@@ -11,18 +7,18 @@ namespace Common
     public interface IChangeConfig
     {
         [OperationContract]
-        void ReadConfiguration();
+        List<string> ReadConfiguration();
 
         [OperationContract]
-        void AddProcess();
+        string AddProcess(string process);
 
         [OperationContract]
-        void ModifyProcess();
+        string ModifyProcess(string p1, string p2);
 
         [OperationContract]
-        void DeleteProcess();
+        string DeleteProcess(string process);
 
         [OperationContract]
-        void DeleteConfigurationFile();
+        string DeleteConfigurationFile();
     }
 }

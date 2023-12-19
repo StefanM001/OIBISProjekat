@@ -1,13 +1,8 @@
 ﻿using Common;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Security;
-using System.Runtime.ConstrainedExecution;
 using System.Security.Principal;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Client
@@ -31,54 +26,19 @@ namespace Client
             Console.WriteLine("Connection with MS servis is succesfull.");
             Console.WriteLine("Korisnik koji je pokrenuo klijenta je : " + WindowsIdentity.GetCurrent().Name);
 
-            try
+            while (true)
             {
-                proxy.AddProcess();
-                Console.WriteLine("Add process allowed");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error while trying to add process : {0}", e.Message);
-            }
+                Console.WriteLine("\n1: Procitaj konfiguraciju");
+                Console.WriteLine("2: Dodaj proces");
+                Console.WriteLine("3: Izmeni parametre konfiguracije");
+                Console.WriteLine("4: Izbrisi proces");
+                Console.WriteLine("5: Izbrisi konfiguracioni fajl");
+                int izbor;
 
-            try
-            {
-                proxy.ReadConfiguration();
-                Console.WriteLine("Read configuration allowed");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error while trying to read configuration : {0}", e.Message);
-            }
-
-            try
-            {
-                proxy.DeleteConfigurationFile();
-                Console.WriteLine("Delete configuration file allowed");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error while trying to delete configuration file : {0}", e.Message);
-            }
-
-            try
-            {
-                proxy.DeleteProcess();
-                Console.WriteLine("Delete process allowed");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error while trying to delete process : {0}", e.Message);
-            }
-
-            try
-            {
-                proxy.ModifyProcess();
-                Console.WriteLine("Modify process allowed");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error while trying to modify process : {0}", e.Message);
+                do
+                {
+                    izbor = int.Parse(Console.ReadLine());
+                } while (izbor < 1 || izbor > 4);
             }
 
             Console.ReadKey();
