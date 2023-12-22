@@ -26,54 +26,56 @@ namespace Client
             Console.WriteLine("Connection with MS servis is succesfull.");
             Console.WriteLine("Korisnik koji je pokrenuo klijenta je : " + WindowsIdentity.GetCurrent().Name);
 
-            try
+            while (true)
             {
-                proxy.AddProcess();
-                Console.WriteLine("Add process allowed");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error while trying to add process : {0}", e.Message);
-            }
+                Console.WriteLine("\n1: Procitaj konfiguraciju");
+                Console.WriteLine("2: Dodaj proces");
+                Console.WriteLine("3: Izmeni parametre konfiguracije");
+                Console.WriteLine("4: Izbrisi proces");
+                Console.WriteLine("5: Izbrisi konfiguracioni fajl");
+                Console.WriteLine("6: Zavrsi rad programa");
+                int izbor;
 
-            try
-            {
-                proxy.ReadConfiguration();
-                Console.WriteLine("Read configuration allowed");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error while trying to read configuration : {0}", e.Message);
-            }
+                do
+                {
+                    izbor = int.Parse(Console.ReadLine());
+                } while (izbor < 1 || izbor > 6);
 
-            try
-            {
-                proxy.DeleteConfigurationFile();
-                Console.WriteLine("Delete configuration file allowed");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error while trying to delete configuration file : {0}", e.Message);
-            }
-
-            try
-            {
-                proxy.DeleteProcess();
-                Console.WriteLine("Delete process allowed");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error while trying to delete process : {0}", e.Message);
-            }
-
-            try
-            {
-                proxy.ModifyProcess();
-                Console.WriteLine("Modify process allowed");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error while trying to modify process : {0}", e.Message);
+                if(izbor == 1)
+                {
+                    foreach(string s in proxy.ReadConfiguration())
+                    {
+                        Console.WriteLine(s);
+                    }
+                }
+                else if(izbor == 2)
+                {
+                    Console.Write("Unesi proces: ");
+                    string proces = Console.ReadLine();
+                    Console.WriteLine(proxy.AddProcess(proces));
+                }
+                else if(izbor == 3)
+                {
+                    Console.Write("Uneti novi proces: ");
+                    string p1 = Console.ReadLine();
+                    Console.Write("Uneti proces za izmenu: ");
+                    string p2 = Console.ReadLine();
+                    Console.WriteLine(proxy.ModifyProcess(p1, p2));
+                }
+                else if(izbor == 4)
+                {
+                    Console.Write("Unesi proces: ");
+                    string proces = Console.ReadLine();
+                    Console.WriteLine(proxy.DeleteProcess(proces));
+                }
+                else if(izbor == 5)
+                {
+                    Console.WriteLine(proxy.DeleteConfigurationFile());
+                }
+                else
+                {
+                    break;
+                }
             }
 
             Console.ReadKey();

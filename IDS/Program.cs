@@ -1,9 +1,12 @@
 ﻿using Common;
 using Manager;
 using System;
+using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 using System.ServiceModel;
+using System.ServiceModel.Description;
+using System.ServiceModel.Security;
 using Formatter = Manager.Formatter;
 
 namespace IDS
@@ -12,62 +15,42 @@ namespace IDS
     {
         static void Main(string[] args)
         {
-            NetTcpBinding binding = new NetTcpBinding();
-            binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
-
-            string srvCertCN = "wcfservice";
-
-            X509Certificate2 srvCert = CertManager.GetCertificateFromStorage(StoreName.TrustedPeople, StoreLocation.LocalMachine, srvCertCN);
-            EndpointAddress address = new EndpointAddress(new Uri("net.tcp://localhost:4001/IMalwareScanning"),
-                                      new X509CertificateEndpointIdentity(srvCert));
-
-            ChannelFactory<IMalwareScanning> channel = new ChannelFactory<IMalwareScanning>(binding, address);
-
-            string cltCertCN = Formatter.ParseName(WindowsIdentity.GetCurrent().Name.ToLower());
-
-            channel.Credentials.ServiceCertificate.Authentication.CertificateValidationMode = System.ServiceModel.Security.X509CertificateValidationMode.ChainTrust;
-            channel.Credentials.ServiceCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
-
-            /// Set appropriate client's certificate on the channel. Use CertManager class to obtain the certificate based on the "cltCertCN"
-            channel.Credentials.ClientCertificate.Certificate = CertManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, cltCertCN);
-
-            Console.WriteLine(WindowsIdentity.GetCurrent().Name);
-
-            /// Use CertManager class to obtain the certificate based on the "srvCertCN" representing the expected service identity.
-
-            IMalwareScanning proxy = channel.CreateChannel();
-
-            X509Certificate2 certificateSign = CertManager.GetCertificateFromStorage(StoreName.My,
-                   StoreLocation.LocalMachine, "wcfclient_sign");
-
-            string message = "Testiranje slanja poruke digitalnim potpisom.";
-
-            byte[] signature = DigitalSignature.Create(message, HashAlgorithm.SHA1, certificateSign);
-
-            try
+            using(ServiceHost host = new ServiceHost(typeof(IDSService)))
             {
-                proxy.SendMessage(message, signature);
-                Console.WriteLine("SendMessage() using {0} certificate finished. Press <enter> to continue ...", cltCertCN);
-                Console.WriteLine(proxy.SendAlarmToIDS());
-                proxy.SendAlarmToMS();
-                Audit.AuthenticationSuccess(Formatter.ParseName(WindowsIdentity.GetCurrent().Name));
+                string address = "net.tcp://localhost:4001/IIDS";
+
+                NetTcpBinding binding = new NetTcpBinding();
+                binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
+
+
+                host.AddServiceEndpoint(typeof(IIDS), binding, address);
+
+                host.Description.Behaviors.Remove(typeof(ServiceDebugBehavior));
+                host.Description.Behaviors.Add(new ServiceDebugBehavior() { IncludeExceptionDetailInFaults = true });
+
+                string srvCertCN = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
+
+                host.Credentials.ClientCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.ChainTrust;
+
+                ///If CA doesn't have a CRL associated, WCF blocks every client because it cannot be validated
+                host.Credentials.ClientCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
+
+                ///Set appropriate service's certificate on the host. Use CertManager class to obtain the certificate based on the "srvCertCN"
+                host.Credentials.ServiceCertificate.Certificate = CertManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, "wcfservice");
+                ServiceSecurityAuditBehavior newAudit = new ServiceSecurityAuditBehavior();
+                newAudit.AuditLogLocation = AuditLogLocation.Application;
+                newAudit.ServiceAuthorizationAuditLevel = AuditLevel.SuccessOrFailure;
+
+                host.Description.Behaviors.Remove<ServiceSecurityAuditBehavior>();
+                host.Description.Behaviors.Add(newAudit);
+
+                host.Open();
+
+                IDSLog iDSLog = new IDSLog();
+
+                Console.WriteLine("Servis je uspesno pokrenut na adresi " + address);
+                Console.ReadKey();
             }
-            catch
-            {
-                Console.WriteLine("Error: Authentification error. Close and try to connect again.");
-            }
-            
-
-            /*string wrongCertCN = "wrong_sign";
-            X509Certificate2 certificateSignWrong = CertManager.GetCertificateFromStorage(StoreName.My,
-                       StoreLocation.LocalMachine, wrongCertCN);
-
-            byte[] signatureWrong = DigitalSignature.Create(message, HashAlgorithm.SHA1, certificateSignWrong);
-
-            proxy.SendMessage(message, signatureWrong);
-            Console.WriteLine("SendMessage() using {0} certificate finished. Press <enter> to continue ...", wrongCertCN); */
-
-            Console.ReadKey();
         }
     }
 }

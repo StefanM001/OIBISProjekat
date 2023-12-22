@@ -3,15 +3,14 @@ using System.Runtime.Serialization;
 
 namespace Common
 {
-    //Proveriti da li radi
-    public enum CriticalLevel { INFORMATION, WARNING, CRITICAL }
+    public enum LevelOfSecurity { None, Information, Warning, Critical }
 
     [DataContract]
     public class Alarm
     {
         DateTime dateTime;
         string name;
-        CriticalLevel level;
+        LevelOfSecurity level;
 
         [DataMember]
         public DateTime DateTime
@@ -28,13 +27,13 @@ namespace Common
         }
 
         [DataMember]
-        public CriticalLevel Level
+        public LevelOfSecurity Level
         {
             get { return level; }
             set { level = value; }
         }
 
-        public Alarm(DateTime dateTime, string name, CriticalLevel level)
+        public Alarm(DateTime dateTime, string name, LevelOfSecurity level)
         {
             this.dateTime = dateTime;
             this.name = name;
@@ -47,7 +46,7 @@ namespace Common
 
         public override string ToString()
         {
-            return dateTime.ToString() + " " + name + " " + level.ToString();
+            return dateTime.ToString() + " | " + name + " | " + level.ToString() + "\n";
         }
     }
 }

@@ -22,3 +22,15 @@ C:\Users\Administrator\Downloads\OIBISProjekat\IDS\obj\Debug\IDS.csproj.CoreComp
 C:\Users\Administrator\Downloads\OIBISProjekat\IDS\obj\Debug\IDS.csproj.CopyComplete
 C:\Users\Administrator\Downloads\OIBISProjekat\IDS\obj\Debug\IDS.exe
 C:\Users\Administrator\Downloads\OIBISProjekat\IDS\obj\Debug\IDS.pdb
+C:\Users\Administrator\Downloads\OIBISProjekat-test\IDS\bin\Debug\IDS.exe.config
+C:\Users\Administrator\Downloads\OIBISProjekat-test\IDS\bin\Debug\IDS.exe
+C:\Users\Administrator\Downloads\OIBISProjekat-test\IDS\bin\Debug\IDS.pdb
+C:\Users\Administrator\Downloads\OIBISProjekat-test\IDS\bin\Debug\Common.dll
+C:\Users\Administrator\Downloads\OIBISProjekat-test\IDS\bin\Debug\Manager.dll
+C:\Users\Administrator\Downloads\OIBISProjekat-test\IDS\bin\Debug\Common.pdb
+C:\Users\Administrator\Downloads\OIBISProjekat-test\IDS\bin\Debug\Manager.pdb
+C:\Users\Administrator\Downloads\OIBISProjekat-test\IDS\obj\Debug\IDS.csproj.AssemblyReference.cache
+C:\Users\Administrator\Downloads\OIBISProjekat-test\IDS\obj\Debug\IDS.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Downloads\OIBISProjekat-test\IDS\obj\Debug\IDS.csproj.CopyComplete
+C:\Users\Administrator\Downloads\OIBISProjekat-test\IDS\obj\Debug\IDS.exe
+C:\Users\Administrator\Downloads\OIBISProjekat-test\IDS\obj\Debug\IDS.pdb

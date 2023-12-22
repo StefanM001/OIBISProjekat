@@ -16,3 +16,9 @@ C:\Users\Administrator\Downloads\OIBISProjekat\Common\obj\Debug\Common.csproj.As
 C:\Users\Administrator\Downloads\OIBISProjekat\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Downloads\OIBISProjekat\Common\obj\Debug\Common.dll
 C:\Users\Administrator\Downloads\OIBISProjekat\Common\obj\Debug\Common.pdb
+C:\Users\Administrator\Downloads\OIBISProjekat-test\Common\bin\Debug\Common.dll
+C:\Users\Administrator\Downloads\OIBISProjekat-test\Common\bin\Debug\Common.pdb
+C:\Users\Administrator\Downloads\OIBISProjekat-test\Common\obj\Debug\Common.csproj.AssemblyReference.cache
+C:\Users\Administrator\Downloads\OIBISProjekat-test\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Downloads\OIBISProjekat-test\Common\obj\Debug\Common.dll
+C:\Users\Administrator\Downloads\OIBISProjekat-test\Common\obj\Debug\Common.pdb

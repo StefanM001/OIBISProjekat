@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Alarm.cs" />
     <Compile Include="IChangeConfig.cs" />
+    <Compile Include="IIDS.cs" />
     <Compile Include="IMalwareScanning.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
