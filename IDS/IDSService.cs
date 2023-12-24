@@ -38,10 +38,5 @@ namespace IDS
         {
             return iDSLog.GetReports();
         }
-
-        public void Send(string message)
-        {
-            iDSLog.LogAlarm(message);
-        }
     }
 }

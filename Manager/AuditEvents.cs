@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using Common;
+using System.Reflection;
 using System.Resources;
 
 namespace Manager
@@ -52,6 +53,14 @@ namespace Manager
             get
             {
                 return ResourceMgr.GetString(AuditEventTypes.AuthorizationFailed.ToString());
+            }
+        }
+
+        public static string AuditCritical
+        {
+            get
+            {
+                return ResourceMgr.GetString(LevelOfSecurity.Critical.ToString());
             }
         }
     }

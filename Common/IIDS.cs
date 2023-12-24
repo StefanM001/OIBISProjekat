@@ -15,8 +15,5 @@ namespace Common
 
         [OperationContract]
         string GetIntegrityReport();
-
-        [OperationContract]
-        void Send(string message);
     }
 }

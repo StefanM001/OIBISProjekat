@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Diagnostics;
 
 namespace Manager
@@ -82,6 +83,20 @@ namespace Manager
             {
                 throw new ArgumentException(string.Format("Error while trying to write event (eventid = {0}) to event log.",
                     (int)AuditEventTypes.AuthorizationFailed));
+            }
+        }
+
+        public static void ProcessCritical(string processName, DateTime dt, int n)
+        {
+            if (customLog != null)
+            {
+                string processInfo = AuditEvents.AuditCritical;
+                string message = string.Format(processInfo, processName, dt, n);
+                customLog.WriteEntry(message);
+            }
+            else
+            {
+                throw new ArgumentException(string.Format("Error while trying to write event (eventid = {0}) to event log.", (int)LevelOfSecurity.Critical));
             }
         }
 
