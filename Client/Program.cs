@@ -26,6 +26,13 @@ namespace Client
             Console.WriteLine("Connection with MS servis is succesfull.");
             Console.WriteLine("Korisnik koji je pokrenuo klijenta je : " + WindowsIdentity.GetCurrent().Name);
 
+            ClientMenu(proxy);
+
+            Console.ReadKey();
+        }
+
+        static void ClientMenu(IChangeConfig proxy)
+        {
             while (true)
             {
                 Console.WriteLine("\n1: Procitaj konfiguraciju");
@@ -34,51 +41,77 @@ namespace Client
                 Console.WriteLine("4: Izbrisi proces");
                 Console.WriteLine("5: Izbrisi konfiguracioni fajl");
                 Console.WriteLine("6: Zavrsi rad programa");
-                int izbor;
 
-                do
+                if (!Int32.TryParse(Console.ReadLine(), out int izbor) || izbor < 1 || izbor > 6)
                 {
-                    izbor = int.Parse(Console.ReadLine());
-                } while (izbor < 1 || izbor > 6);
-
-                if(izbor == 1)
-                {
-                    foreach(string s in proxy.ReadConfiguration())
+                    if (izbor == 6)
                     {
-                        Console.WriteLine(s);
+                        break;
                     }
+                    Console.WriteLine("Niste izabrali opciju u korektnom formatu. Pokusajte ponovo.");
+                    continue;
                 }
-                else if(izbor == 2)
-                {
-                    Console.Write("Unesi proces: ");
-                    string proces = Console.ReadLine();
-                    Console.WriteLine(proxy.AddProcess(proces));
-                }
-                else if(izbor == 3)
-                {
-                    Console.Write("Uneti novi proces: ");
-                    string p1 = Console.ReadLine();
-                    Console.Write("Uneti proces za izmenu: ");
-                    string p2 = Console.ReadLine();
-                    Console.WriteLine(proxy.ModifyProcess(p1, p2));
-                }
-                else if(izbor == 4)
-                {
-                    Console.Write("Unesi proces: ");
-                    string proces = Console.ReadLine();
-                    Console.WriteLine(proxy.DeleteProcess(proces));
-                }
-                else if(izbor == 5)
-                {
-                    Console.WriteLine(proxy.DeleteConfigurationFile());
-                }
-                else
-                {
-                    break;
-                }
-            }
 
-            Console.ReadKey();
+                SwitchCaseForClientMenu(izbor, proxy);
+            }
+        }
+
+        static void SwitchCaseForClientMenu(int izbor, IChangeConfig proxy)
+        {
+            switch (izbor)
+            {
+                case 1:
+                    try
+                    {
+                        foreach (string s in proxy.ReadConfiguration())
+                        {
+                            Console.WriteLine(s);
+                        }
+                    }
+                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+                    break;
+                case 2:
+                    try
+                    {
+                        Console.Write("Unesi proces: ");
+                        string proces = Console.ReadLine();
+                        Console.WriteLine(proxy.AddProcess(proces));
+                    }
+                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+                    break;
+                case 3:
+                    try
+                    {
+                        Console.Write("Uneti novi proces: ");
+                        string p1 = Console.ReadLine();
+                        Console.Write("Uneti trenutni proces koji zelite izmeniti: ");
+                        string p2 = Console.ReadLine();
+                        Console.WriteLine(proxy.ModifyProcess(p1, p2));
+                    }
+                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+                    break;
+                case 4:
+                    try
+                    {
+                        Console.Write("Unesi proces za brisanje: ");
+                        string proces = Console.ReadLine();
+                        Console.WriteLine(proxy.DeleteProcess(proces));
+                    }
+                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+                    break;
+                case 5:
+                    try
+                    {
+                        Console.WriteLine(proxy.DeleteConfigurationFile());
+                    }
+                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+                    break;
+                case 6:
+                    Console.WriteLine("Working is done. Press any key to exit...");
+                    Console.ReadKey();
+                    return;
+                    break;
+            }
         }
     }
 }

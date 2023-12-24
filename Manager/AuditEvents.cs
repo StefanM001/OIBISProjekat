@@ -8,7 +8,8 @@ namespace Manager
     {
         AuthenticationSuccess = 0,
         AuthorizationSuccess = 1,
-        AuthorizationFailed = 2
+        AuthorizationFailed = 2,
+        ProcessCritical = 3
     }
     public class AuditEvents
     {
@@ -60,7 +61,7 @@ namespace Manager
         {
             get
             {
-                return ResourceMgr.GetString(LevelOfSecurity.Critical.ToString());
+                return ResourceMgr.GetString(AuditEventTypes.ProcessCritical.ToString());
             }
         }
     }

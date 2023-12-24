@@ -77,7 +77,7 @@ namespace Manager
                     AuditEvents.AuthorizationFailed;
                 string message = String.Format(AuthorizationFailed,
                     userName, serviceName, reason);
-                customLog.WriteEntry(message);
+                customLog.WriteEntry(message, EventLogEntryType.Warning);
             }
             else
             {
@@ -91,8 +91,8 @@ namespace Manager
             if (customLog != null)
             {
                 string processInfo = AuditEvents.AuditCritical;
-                string message = string.Format(processInfo, processName, dt, n);
-                customLog.WriteEntry(message);
+                string message = string.Format(processInfo, processName, dt.ToString(), n);
+                customLog.WriteEntry(message, EventLogEntryType.Warning);
             }
             else
             {

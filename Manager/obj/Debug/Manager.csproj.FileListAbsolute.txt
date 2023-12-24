@@ -32,3 +32,15 @@ C:\Users\Administrator\Downloads\OIBISProjekat-test\Manager\obj\Debug\Manager.cs
 C:\Users\Administrator\Downloads\OIBISProjekat-test\Manager\obj\Debug\Manager.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Downloads\OIBISProjekat-test\Manager\obj\Debug\Manager.dll
 C:\Users\Administrator\Downloads\OIBISProjekat-test\Manager\obj\Debug\Manager.pdb
+C:\Users\Administrator\Documents\OIBIS-Test\OIBISProjekat\Manager\bin\Debug\Manager.dll
+C:\Users\Administrator\Documents\OIBIS-Test\OIBISProjekat\Manager\bin\Debug\Manager.pdb
+C:\Users\Administrator\Documents\OIBIS-Test\OIBISProjekat\Manager\bin\Debug\Common.dll
+C:\Users\Administrator\Documents\OIBIS-Test\OIBISProjekat\Manager\bin\Debug\Common.pdb
+C:\Users\Administrator\Documents\OIBIS-Test\OIBISProjekat\Manager\obj\Debug\Manager.csproj.AssemblyReference.cache
+C:\Users\Administrator\Documents\OIBIS-Test\OIBISProjekat\Manager\obj\Debug\Manager.AuditEventFile.resources
+C:\Users\Administrator\Documents\OIBIS-Test\OIBISProjekat\Manager\obj\Debug\Manager.RoleConfigFile.resources
+C:\Users\Administrator\Documents\OIBIS-Test\OIBISProjekat\Manager\obj\Debug\Manager.csproj.GenerateResource.cache
+C:\Users\Administrator\Documents\OIBIS-Test\OIBISProjekat\Manager\obj\Debug\Manager.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\OIBIS-Test\OIBISProjekat\Manager\obj\Debug\Manager.csproj.CopyComplete
+C:\Users\Administrator\Documents\OIBIS-Test\OIBISProjekat\Manager\obj\Debug\Manager.dll
+C:\Users\Administrator\Documents\OIBIS-Test\OIBISProjekat\Manager\obj\Debug\Manager.pdb
